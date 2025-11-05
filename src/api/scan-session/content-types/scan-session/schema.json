@@ -1,0 +1,49 @@
+{
+  "kind": "collectionType",
+  "collectionName": "scan_sessions",
+  "info": {
+    "singularName": "scan-session",
+    "pluralName": "scan-sessions",
+    "displayName": "Scan Session",
+    "description": "File scanning sessions"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "scanPath": {
+      "type": "string",
+      "required": true
+    },
+    "startTime": {
+      "type": "datetime",
+      "required": true
+    },
+    "endTime": {
+      "type": "datetime"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["running", "completed", "failed"],
+      "default": "running"
+    },
+    "filesScanned": {
+      "type": "integer",
+      "default": 0
+    },
+    "totalSize": {
+      "type": "biginteger",
+      "default": 0
+    },
+    "errorMessage": {
+      "type": "text"
+    },
+    "scannedFiles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::scanned-file.scanned-file",
+      "mappedBy": "scanSession"
+    }
+  }
+}

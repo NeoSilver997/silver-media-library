@@ -1,0 +1,71 @@
+{
+  "kind": "collectionType",
+  "collectionName": "music_metadata",
+  "info": {
+    "singularName": "music-metadata",
+    "pluralName": "music-metadata",
+    "displayName": "Music Metadata",
+    "description": "ID3 and audio metadata for music files"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "file": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::scanned-file.scanned-file",
+      "inversedBy": "musicMetadata"
+    },
+    "title": {
+      "type": "string"
+    },
+    "artist": {
+      "type": "string"
+    },
+    "album": {
+      "type": "string"
+    },
+    "albumArtist": {
+      "type": "string"
+    },
+    "year": {
+      "type": "integer"
+    },
+    "genre": {
+      "type": "string"
+    },
+    "trackNumber": {
+      "type": "integer"
+    },
+    "diskNumber": {
+      "type": "integer"
+    },
+    "duration": {
+      "type": "decimal"
+    },
+    "bitrate": {
+      "type": "integer"
+    },
+    "sampleRate": {
+      "type": "integer"
+    },
+    "channels": {
+      "type": "integer"
+    },
+    "codec": {
+      "type": "string"
+    },
+    "composer": {
+      "type": "string"
+    },
+    "isrc": {
+      "type": "string"
+    },
+    "hasAlbumArt": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

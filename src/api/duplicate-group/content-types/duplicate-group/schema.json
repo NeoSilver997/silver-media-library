@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "duplicate_groups",
+  "info": {
+    "singularName": "duplicate-group",
+    "pluralName": "duplicate-groups",
+    "displayName": "Duplicate Group",
+    "description": "Groups of duplicate files"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "hash": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "fileSize": {
+      "type": "biginteger",
+      "required": true
+    },
+    "fileCount": {
+      "type": "integer",
+      "default": 0
+    },
+    "wastedSpace": {
+      "type": "biginteger",
+      "default": 0
+    },
+    "files": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::scanned-file.scanned-file",
+      "mappedBy": "duplicateGroup"
+    }
+  }
+}

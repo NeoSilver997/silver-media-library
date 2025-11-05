@@ -1,0 +1,73 @@
+{
+  "kind": "collectionType",
+  "collectionName": "photo_metadata",
+  "info": {
+    "singularName": "photo-metadata",
+    "pluralName": "photo-metadata",
+    "displayName": "Photo Metadata",
+    "description": "EXIF metadata for photos"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "file": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::scanned-file.scanned-file",
+      "inversedBy": "photoMetadata"
+    },
+    "width": {
+      "type": "integer"
+    },
+    "height": {
+      "type": "integer"
+    },
+    "cameraMake": {
+      "type": "string"
+    },
+    "cameraModel": {
+      "type": "string"
+    },
+    "lens": {
+      "type": "string"
+    },
+    "iso": {
+      "type": "integer"
+    },
+    "aperture": {
+      "type": "decimal"
+    },
+    "shutterSpeed": {
+      "type": "string"
+    },
+    "focalLength": {
+      "type": "decimal"
+    },
+    "flash": {
+      "type": "boolean"
+    },
+    "dateTaken": {
+      "type": "datetime"
+    },
+    "latitude": {
+      "type": "decimal"
+    },
+    "longitude": {
+      "type": "decimal"
+    },
+    "altitude": {
+      "type": "decimal"
+    },
+    "software": {
+      "type": "string"
+    },
+    "artist": {
+      "type": "string"
+    },
+    "copyright": {
+      "type": "string"
+    }
+  }
+}

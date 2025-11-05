@@ -1,0 +1,75 @@
+{
+  "kind": "collectionType",
+  "collectionName": "scanned_files",
+  "info": {
+    "singularName": "scanned-file",
+    "pluralName": "scanned-files",
+    "displayName": "Scanned File",
+    "description": "Files scanned by the media library system"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "path": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "filename": {
+      "type": "string",
+      "required": true
+    },
+    "extension": {
+      "type": "string"
+    },
+    "size": {
+      "type": "biginteger",
+      "required": true
+    },
+    "hash": {
+      "type": "string"
+    },
+    "modifiedTime": {
+      "type": "datetime"
+    },
+    "createdTime": {
+      "type": "datetime"
+    },
+    "mediaType": {
+      "type": "enumeration",
+      "enum": ["photo", "music", "video", "other"]
+    },
+    "scanSession": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::scan-session.scan-session",
+      "inversedBy": "scannedFiles"
+    },
+    "photoMetadata": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::photo-metadata.photo-metadata",
+      "mappedBy": "file"
+    },
+    "musicMetadata": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::music-metadata.music-metadata",
+      "mappedBy": "file"
+    },
+    "videoMetadata": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::video-metadata.video-metadata",
+      "mappedBy": "file"
+    },
+    "duplicateGroup": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::duplicate-group.duplicate-group",
+      "inversedBy": "files"
+    }
+  }
+}

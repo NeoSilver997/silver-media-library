@@ -1,0 +1,79 @@
+{
+  "kind": "collectionType",
+  "collectionName": "video_metadata",
+  "info": {
+    "singularName": "video-metadata",
+    "pluralName": "video-metadata",
+    "displayName": "Video Metadata",
+    "description": "Video and audio metadata for video files"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "file": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::scanned-file.scanned-file",
+      "inversedBy": "videoMetadata"
+    },
+    "duration": {
+      "type": "decimal"
+    },
+    "width": {
+      "type": "integer"
+    },
+    "height": {
+      "type": "integer"
+    },
+    "frameRate": {
+      "type": "decimal"
+    },
+    "videoCodec": {
+      "type": "string"
+    },
+    "videoBitrate": {
+      "type": "integer"
+    },
+    "audioCodec": {
+      "type": "string"
+    },
+    "audioSampleRate": {
+      "type": "integer"
+    },
+    "audioChannels": {
+      "type": "integer"
+    },
+    "audioBitrate": {
+      "type": "integer"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "genre": {
+      "type": "string"
+    },
+    "artist": {
+      "type": "string"
+    },
+    "year": {
+      "type": "integer"
+    },
+    "creationDate": {
+      "type": "datetime"
+    },
+    "latitude": {
+      "type": "decimal"
+    },
+    "longitude": {
+      "type": "decimal"
+    },
+    "software": {
+      "type": "string"
+    }
+  }
+}
