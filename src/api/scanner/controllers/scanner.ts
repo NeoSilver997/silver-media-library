@@ -58,12 +58,13 @@ export default factories.createCoreController('api::scanned-file.scanned-file', 
             }
 
             // Create scanned file entry
+            // Note: biginteger fields in Strapi require string values for data input
             const scannedFile = await strapi.entityService.create('api::scanned-file.scanned-file', {
               data: {
                 path: file.path,
                 filename: file.name,
                 extension,
-                size: file.size.toString(),
+                size: file.size.toString(), // biginteger requires string
                 modifiedTime: file.mtime,
                 createdTime: file.ctime,
                 mediaType,
@@ -160,6 +161,7 @@ export default factories.createCoreController('api::scanned-file.scanned-file', 
         for (const file of files) {
           try {
             const hash = await scanner.calculateHash(file.path);
+            // Note: Using 'as any' because Strapi's generated types may not include all dynamic attributes
             await strapi.entityService.update('api::scanned-file.scanned-file', file.id, {
               data: { hash } as any,
             });
@@ -201,21 +203,22 @@ export default factories.createCoreController('api::scanned-file.scanned-file', 
           });
 
           let group;
+          // Note: Using 'as any' for data objects because Strapi's generated types may not include all attributes
           if (existingGroup.length > 0) {
             group = await strapi.entityService.update('api::duplicate-group.duplicate-group', existingGroup[0].id, {
               data: {
-                fileSize: fileSize.toString(),
+                fileSize: fileSize.toString(), // biginteger requires string
                 fileCount: files.length,
-                wastedSpace: wastedSpace.toString(),
+                wastedSpace: wastedSpace.toString(), // biginteger requires string
               } as any,
             });
           } else {
             group = await strapi.entityService.create('api::duplicate-group.duplicate-group', {
               data: {
                 hash,
-                fileSize: fileSize.toString(),
+                fileSize: fileSize.toString(), // biginteger requires string
                 fileCount: files.length,
-                wastedSpace: wastedSpace.toString(),
+                wastedSpace: wastedSpace.toString(), // biginteger requires string
               } as any,
             });
           }
