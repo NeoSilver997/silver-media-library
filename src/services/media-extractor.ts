@@ -75,7 +75,7 @@ export class MediaMetadataExtractor {
         metadata.aperture = exif.FNumber || exif.ApertureValue;
         metadata.shutterSpeed = exif.ExposureTime || exif.ShutterSpeedValue;
         metadata.focalLength = exif.FocalLength;
-        metadata.flash = (exif as any).Flash ? true : false;
+        metadata.flash = Boolean((exif as any).Flash);
         metadata.dateTaken = exif.DateTimeOriginal || exif.CreateDate;
         metadata.latitude = exif.GPSLatitude;
         metadata.longitude = exif.GPSLongitude;
