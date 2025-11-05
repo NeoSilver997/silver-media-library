@@ -3,7 +3,7 @@
   "collectionName": "music_metadata",
   "info": {
     "singularName": "music-metadata",
-    "pluralName": "music-metadata",
+    "pluralName": "music-metadatas",
     "displayName": "Music Metadata",
     "description": "ID3 and audio metadata for music files"
   },
