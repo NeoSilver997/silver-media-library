@@ -108,9 +108,34 @@ curl http://localhost:1337/api/scanner/sessions
 
 ## Database Migration
 
-If you have existing data in SilverFileSystem's MySQL database, you can migrate it:
+If you have existing data in SilverFileSystem's MySQL database, you have several options:
 
-### Option 1: Re-scan (Recommended)
+### Option 1: Automated Migration Script (Recommended)
+
+Use the provided migration script to automatically transfer data. See [DATA_MIGRATION.md](DATA_MIGRATION.md) for complete instructions.
+
+**Quick start:**
+```bash
+# Configure source database
+SOURCE_DB_HOST=localhost \
+SOURCE_DB_USER=root \
+SOURCE_DB_PASSWORD=password \
+SOURCE_DB_NAME=silverfilesystem \
+npm run migrate-data-dry
+
+# Run actual migration
+npm run migrate-data --no-dry-run
+```
+
+The script will migrate:
+- ✅ All scanned files
+- ✅ Scan session history
+- ✅ Photo metadata (EXIF data)
+- ✅ Music metadata (ID3 tags)
+- ✅ Video metadata
+- ✅ File hashes for duplicate detection
+
+### Option 2: Re-scan (Simplest)
 
 The easiest approach is to re-scan your directories with the new system:
 
@@ -118,9 +143,12 @@ The easiest approach is to re-scan your directories with the new system:
 2. Use the scan API to scan your directories
 3. The system will extract all metadata fresh
 
-### Option 2: Manual Migration
+**Advantages:** Fresh metadata, validates files exist, no compatibility issues  
+**Disadvantages:** Loses scan history, takes time for large collections
 
-If you need to preserve scan history, you can write a migration script:
+### Option 3: Manual Migration
+
+If you need custom migration logic, you can write your own script:
 
 ```javascript
 // Example migration script (customize as needed)
