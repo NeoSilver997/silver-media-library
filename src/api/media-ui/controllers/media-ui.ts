@@ -9,11 +9,6 @@ export default factories.createCoreController('api::scanned-file.scanned-file', 
    */
   async photosPage(ctx) {
     try {
-      // Check if user is authenticated
-      if (!ctx.state.user) {
-        return ctx.redirect('/admin/auth/login');
-      }
-
       // Generate HTML for photos page
       const html = await strapi.service('api::media-ui.media-ui').generatePhotosHTML();
       ctx.type = 'html';
@@ -29,11 +24,6 @@ export default factories.createCoreController('api::scanned-file.scanned-file', 
    */
   async musicPage(ctx) {
     try {
-      // Check if user is authenticated
-      if (!ctx.state.user) {
-        return ctx.redirect('/admin/auth/login');
-      }
-
       // Generate HTML for music page
       const html = await strapi.service('api::media-ui.media-ui').generateMusicHTML();
       ctx.type = 'html';
@@ -49,11 +39,6 @@ export default factories.createCoreController('api::scanned-file.scanned-file', 
    */
   async videosPage(ctx) {
     try {
-      // Check if user is authenticated
-      if (!ctx.state.user) {
-        return ctx.redirect('/admin/auth/login');
-      }
-
       // Generate HTML for videos page
       const html = await strapi.service('api::media-ui.media-ui').generateVideosHTML();
       ctx.type = 'html';
@@ -69,11 +54,6 @@ export default factories.createCoreController('api::scanned-file.scanned-file', 
    */
   async getPhotos(ctx) {
     try {
-      // Check if user is authenticated
-      if (!ctx.state.user) {
-        return ctx.unauthorized('Authentication required');
-      }
-
       const { search, camera, year, month, limit = 100, offset = 0 } = ctx.query;
 
       const filters: any = {
@@ -136,11 +116,6 @@ export default factories.createCoreController('api::scanned-file.scanned-file', 
    */
   async getMusic(ctx) {
     try {
-      // Check if user is authenticated
-      if (!ctx.state.user) {
-        return ctx.unauthorized('Authentication required');
-      }
-
       const { search, artist, album, genre, limit = 100, offset = 0 } = ctx.query;
 
       const filters: any = {
@@ -199,11 +174,6 @@ export default factories.createCoreController('api::scanned-file.scanned-file', 
    */
   async getVideos(ctx) {
     try {
-      // Check if user is authenticated
-      if (!ctx.state.user) {
-        return ctx.unauthorized('Authentication required');
-      }
-
       const { search, resolution, limit = 100, offset = 0 } = ctx.query;
 
       const filters: any = {
@@ -254,11 +224,6 @@ export default factories.createCoreController('api::scanned-file.scanned-file', 
    */
   async serveFile(ctx) {
     try {
-      // Check if user is authenticated
-      if (!ctx.state.user) {
-        return ctx.unauthorized('Authentication required');
-      }
-
       const { id } = ctx.params;
 
       const file = await strapi.entityService.findOne('api::scanned-file.scanned-file', id);
