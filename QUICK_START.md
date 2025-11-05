@@ -92,9 +92,31 @@ This will:
 - Group files by hash
 - Report duplicate groups with wasted space
 
-### 6. Browse in Admin Panel
+### 6. Browse Media in Web UIs
 
-Navigate to `http://localhost:1337/admin` to:
+After logging in, access the beautiful media UIs:
+
+#### Photo Library (`/api/media-ui/photos`)
+- Grid view with image previews
+- Click to view full-size images
+- Search by filename
+- View camera and location metadata
+
+#### Music Player (`/api/media-ui/music`)
+- List view with track information
+- Built-in audio player
+- Search by title, artist, or album
+- Play tracks directly in browser
+
+#### Video Player (`/api/media-ui/videos`)
+- Grid view with video information
+- Click to play videos
+- Streaming support with range requests
+- Search and filter videos
+
+### 7. Admin Panel
+
+Navigate to `http://localhost:1337/admin` for advanced management:
 
 - **Scanned Files** - View all scanned files with metadata
 - **Scan Sessions** - View scan history and statistics

@@ -9,6 +9,9 @@ A powerful media management system built with Strapi.io for scanning, organizing
 - 📷 **Photo Metadata** - Extract EXIF data from photos (camera, GPS, settings)
 - 🎵 **Music Metadata** - Extract ID3 tags from music files (artist, album, bitrate)
 - 🎬 **Video Metadata** - Extract video properties (codec, resolution, duration)
+- 🖼️ **Photo Library UI** - Beautiful web interface for browsing photos
+- 🎵 **Music Player UI** - Interactive music player with metadata display
+- 🎬 **Video Player UI** - Video player with streaming support
 - 🖥️ **Admin Panel** - Built-in Strapi admin interface for managing files
 - 🔌 **REST API** - Full REST API for programmatic access
 - 🔐 **User Authentication** - Built-in user management and permissions
@@ -69,9 +72,15 @@ curl http://localhost:1337/api/scanner/sessions
 curl http://localhost:1337/api/scanner/sessions/1
 ```
 
-### 3. Browse Files in Admin Panel
+### 3. Browse Media in Web UIs
 
-Navigate to `http://localhost:1337/admin` to:
+After logging in to the admin panel, access the media UIs:
+
+- **Photo Library**: `http://localhost:1337/api/media-ui/photos`
+- **Music Player**: `http://localhost:1337/api/media-ui/music`
+- **Video Player**: `http://localhost:1337/api/media-ui/videos`
+
+Or use the **Admin Panel** at `http://localhost:1337/admin` to:
 - View scanned files
 - Browse media metadata
 - Check duplicate groups
