@@ -109,11 +109,11 @@ export default factories.createCoreController('api::scanned-file.scanned-file', 
           }
           if (year && photo.photoMetadata.dateTaken) {
             const photoYear = new Date(photo.photoMetadata.dateTaken).getFullYear();
-            if (photoYear !== parseInt(year)) return false;
+            if (photoYear !== parseInt(year as string)) return false;
           }
           if (month && photo.photoMetadata.dateTaken) {
             const photoMonth = new Date(photo.photoMetadata.dateTaken).getMonth() + 1;
-            if (photoMonth !== parseInt(month)) return false;
+            if (photoMonth !== parseInt(month as string)) return false;
           }
           return true;
         });
@@ -169,13 +169,13 @@ export default factories.createCoreController('api::scanned-file.scanned-file', 
       if (artist || album || genre) {
         filteredMusic = music.filter((track: any) => {
           if (!track.musicMetadata) return false;
-          if (artist && track.musicMetadata.artist && !track.musicMetadata.artist.toLowerCase().includes(artist.toLowerCase())) {
+          if (artist && track.musicMetadata.artist && !track.musicMetadata.artist.toLowerCase().includes((artist as string).toLowerCase())) {
             return false;
           }
-          if (album && track.musicMetadata.album && !track.musicMetadata.album.toLowerCase().includes(album.toLowerCase())) {
+          if (album && track.musicMetadata.album && !track.musicMetadata.album.toLowerCase().includes((album as string).toLowerCase())) {
             return false;
           }
-          if (genre && track.musicMetadata.genre && !track.musicMetadata.genre.toLowerCase().includes(genre.toLowerCase())) {
+          if (genre && track.musicMetadata.genre && !track.musicMetadata.genre.toLowerCase().includes((genre as string).toLowerCase())) {
             return false;
           }
           return true;
@@ -276,7 +276,7 @@ export default factories.createCoreController('api::scanned-file.scanned-file', 
       const stat = fs.statSync(file.path);
 
       // Set appropriate headers
-      ctx.set('Content-Type', this.getMimeType(file.extension));
+      ctx.set('Content-Type', getMimeType(file.extension || ''));
       ctx.set('Content-Length', stat.size.toString());
       ctx.set('Accept-Ranges', 'bytes');
 
@@ -302,33 +302,34 @@ export default factories.createCoreController('api::scanned-file.scanned-file', 
     }
   },
 
-  /**
-   * Get MIME type from extension
-   */
-  getMimeType(extension: string): string {
-    const mimeTypes: { [key: string]: string } = {
-      // Images
-      jpg: 'image/jpeg',
-      jpeg: 'image/jpeg',
-      png: 'image/png',
-      gif: 'image/gif',
-      webp: 'image/webp',
-      heic: 'image/heic',
-      heif: 'image/heif',
-      // Audio
-      mp3: 'audio/mpeg',
-      flac: 'audio/flac',
-      wav: 'audio/wav',
-      m4a: 'audio/mp4',
-      ogg: 'audio/ogg',
-      // Video
-      mp4: 'video/mp4',
-      mkv: 'video/x-matroska',
-      avi: 'video/x-msvideo',
-      mov: 'video/quicktime',
-      webm: 'video/webm',
-    };
-
-    return mimeTypes[extension.toLowerCase()] || 'application/octet-stream';
-  },
 }));
+
+/**
+ * Get MIME type from extension
+ */
+function getMimeType(extension: string): string {
+  const mimeTypes: { [key: string]: string } = {
+    // Images
+    jpg: 'image/jpeg',
+    jpeg: 'image/jpeg',
+    png: 'image/png',
+    gif: 'image/gif',
+    webp: 'image/webp',
+    heic: 'image/heic',
+    heif: 'image/heif',
+    // Audio
+    mp3: 'audio/mpeg',
+    flac: 'audio/flac',
+    wav: 'audio/wav',
+    m4a: 'audio/mp4',
+    ogg: 'audio/ogg',
+    // Video
+    mp4: 'video/mp4',
+    mkv: 'video/x-matroska',
+    avi: 'video/x-msvideo',
+    mov: 'video/quicktime',
+    webm: 'video/webm',
+  };
+
+  return mimeTypes[extension.toLowerCase()] || 'application/octet-stream';
+}
