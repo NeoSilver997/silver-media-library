@@ -32,6 +32,18 @@ cd silver-media-library
 npm install
 ```
 
+## Migrating from SilverFileSystem
+
+If you have existing data in a SilverFileSystem database, see the [DATA_MIGRATION.md](DATA_MIGRATION.md) guide for detailed instructions on how to migrate your data to the new Strapi-based system.
+
+**Quick migration:**
+```bash
+# Configure source database in .env.migration
+# Then run:
+npm run migrate-data-dry  # Test with 100 files
+npm run migrate-data --no-dry-run  # Full migration
+```
+
 ## Quick Start
 
 ### 1. Start the Development Server
