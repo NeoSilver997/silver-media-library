@@ -75,7 +75,7 @@ export class MediaMetadataExtractor {
         metadata.aperture = exif.FNumber || exif.ApertureValue;
         metadata.shutterSpeed = exif.ExposureTime || exif.ShutterSpeedValue;
         metadata.focalLength = exif.FocalLength;
-        metadata.flash = exif.Flash ? true : false;
+        metadata.flash = (exif as any).Flash ? true : false;
         metadata.dateTaken = exif.DateTimeOriginal || exif.CreateDate;
         metadata.latitude = exif.GPSLatitude;
         metadata.longitude = exif.GPSLongitude;
@@ -139,16 +139,16 @@ export class MediaMetadataExtractor {
         height: exif.ImageHeight,
         frameRate: exif.VideoFrameRate || exif.FrameRate,
         videoCodec: exif.VideoCodec || exif.CompressorID,
-        videoBitrate: exif.VideoBitrate,
+        videoBitrate: (exif as any).VideoBitrate,
         audioCodec: exif.AudioCodec,
         audioSampleRate: exif.AudioSampleRate,
         audioChannels: exif.AudioChannels,
-        audioBitrate: exif.AudioBitrate,
+        audioBitrate: (exif as any).AudioBitrate,
         title: exif.Title,
         description: exif.Description,
-        genre: exif.Genre,
+        genre: (exif as any).Genre,
         artist: exif.Artist,
-        year: exif.Year,
+        year: (exif as any).Year,
         creationDate: exif.CreateDate,
         latitude: exif.GPSLatitude,
         longitude: exif.GPSLongitude,

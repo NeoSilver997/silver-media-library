@@ -3,7 +3,7 @@
   "collectionName": "video_metadata",
   "info": {
     "singularName": "video-metadata",
-    "pluralName": "video-metadata",
+    "pluralName": "video-metadatas",
     "displayName": "Video Metadata",
     "description": "Video and audio metadata for video files"
   },

@@ -3,7 +3,7 @@
   "collectionName": "photo_metadata",
   "info": {
     "singularName": "photo-metadata",
-    "pluralName": "photo-metadata",
+    "pluralName": "photo-metadatas",
     "displayName": "Photo Metadata",
     "description": "EXIF metadata for photos"
   },
